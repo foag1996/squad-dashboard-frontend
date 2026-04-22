@@ -1,0 +1,63 @@
+<p-card styleClass="member-card" [pTooltip]="buildTooltipContent(member.allIssues)" tooltipPosition="top" [escape]="false">
+  <ng-template pTemplate="header">
+    <div class="member-card__header">
+      <div class="member-avatar">
+        {{ getInitials(member.name) }}
+      </div>
+      <div class="member-info">
+        <h3 class="member-name">{{ member.name }}</h3>
+        <span class="member-role">
+          <i class="pi {{ getRoleIcon(member.role) }} mr-1"></i>
+          {{ member.role }}
+        </span>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Especialidades -->
+  <div class="member-specialties">
+    <span *ngFor="let spec of member.specialties" class="specialty-tag">
+      {{ spec }}
+    </span>
+  </div>
+
+  <!-- HU actual en progreso -->
+  <div class="member-current-issue" *ngIf="member.currentIssue; else noIssue">
+    <div class="current-issue-label">
+      <i class="pi pi-spin pi-spinner mr-1"></i>
+      HU en progreso
+    </div>
+    <div class="current-issue-content">
+      <span class="issue-key">{{ member.currentIssue.key }}</span>
+      <span class="issue-summary">{{ member.currentIssue.summary }}</span>
+      <p-tag
+        [value]="member.currentIssue.status"
+        [severity]="getStatusSeverity(member.currentIssue.status)"
+        styleClass="issue-status-tag">
+      </p-tag>
+    </div>
+  </div>
+
+  <ng-template #noIssue>
+    <div class="member-no-issue">
+      <i class="pi pi-check-circle mr-1"></i>
+      Sin HU activa
+    </div>
+  </ng-template>
+
+  <!-- Progreso -->
+  <div class="member-progress">
+    <div class="progress-header">
+      <span class="progress-label">Avance del sprint</span>
+      <span class="progress-value">{{ member.progress }}%</span>
+    </div>
+    <p-progressBar [value]="member.progress" [showValue]="false"></p-progressBar>
+  </div>
+
+  <!-- Total HUs -->
+  <div class="member-issues-count">
+    <i class="pi pi-list mr-1"></i>
+    {{ member.allIssues.length }} HUs asignadas
+    <span class="hover-hint">(hover para ver detalle)</span>
+  </div>
+</p-card>
