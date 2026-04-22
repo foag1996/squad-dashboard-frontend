@@ -1,0 +1,34 @@
+<div class="header-wrapper">
+  <p-toolbar styleClass="header-toolbar">
+    <ng-template pTemplate="start">
+      <div class="header-brand">
+        <i class="pi pi-th-large header-icon"></i>
+        <div class="header-titles">
+          <h1 class="header-title">Squad Dashboard</h1>
+          <span class="header-subtitle">
+            <i class="pi pi-calendar-times mr-1"></i>
+            {{ dashboardService.stats().sprintName }}
+          </span>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="end">
+      <div class="header-actions">
+        <span class="last-updated" *ngIf="dashboardService.lastUpdated()">
+          <i class="pi pi-clock mr-1"></i>
+          Actualizado: {{ dashboardService.lastUpdated() | date:'HH:mm:ss' }}
+        </span>
+        <p-button
+          icon="pi pi-refresh"
+          label="Actualizar"
+          styleClass="p-button-outlined p-button-sm refresh-btn"
+          [loading]="dashboardService.loading()"
+          pTooltip="Refrescar datos desde Jira"
+          tooltipPosition="bottom"
+          (onClick)="refresh()">
+        </p-button>
+      </div>
+    </ng-template>
+  </p-toolbar>
+</div>

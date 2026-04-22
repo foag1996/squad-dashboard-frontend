@@ -1,0 +1,67 @@
+<p-card styleClass="break-timer-card">
+  <ng-template pTemplate="header">
+    <div class="timer-header">
+      <div class="timer-header-left">
+        <i class="pi pi-clock timer-icon"></i>
+        <span class="timer-title">Pausa Activa</span>
+      </div>
+      <span
+        class="timer-status-badge"
+        [class.badge--running]="isRunning()"
+        [class.badge--paused]="!isRunning() && !isFinished() && secondsLeft() < 900"
+        [class.badge--finished]="isFinished()">
+        {{ isFinished() ? '\u00a1Tiempo!' : isRunning() ? 'Corriendo' : 'Pausado' }}
+      </span>
+    </div>
+  </ng-template>
+
+  <!-- Display del tiempo -->
+  <div class="timer-display" [class.timer-display--finished]="isFinished()">
+    {{ displayTime() }}
+  </div>
+
+  <!-- Barra de progreso -->
+  <div class="timer-progress">
+    <p-progressBar
+      [value]="progressValue()"
+      [showValue]="false"
+      styleClass="timer-progress-bar">
+    </p-progressBar>
+    <div class="timer-progress-labels">
+      <span>0:00</span>
+      <span>15:00</span>
+    </div>
+  </div>
+
+  <!-- Alerta cuando termina -->
+  <div class="timer-alert" *ngIf="isFinished()">
+    <i class="pi pi-bell mr-2"></i>
+    \u00a1Es hora de tu pausa activa! Levántate y estiráte.
+  </div>
+
+  <!-- Botones de control -->
+  <div class="timer-controls">
+    <p-button
+      icon="pi pi-play"
+      label="Iniciar"
+      styleClass="p-button-success p-button-sm"
+      [disabled]="isRunning() || isFinished()"
+      (onClick)="start()">
+    </p-button>
+
+    <p-button
+      icon="pi pi-pause"
+      label="Pausar"
+      styleClass="p-button-warning p-button-sm"
+      [disabled]="!isRunning()"
+      (onClick)="pause()">
+    </p-button>
+
+    <p-button
+      icon="pi pi-refresh"
+      label="Reiniciar"
+      styleClass="p-button-secondary p-button-sm"
+      (onClick)="reset()">
+    </p-button>
+  </div>
+</p-card>
