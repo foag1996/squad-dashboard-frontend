@@ -1,0 +1,66 @@
+<div class="sprint-stats-wrapper">
+  <div class="grid">
+    <!-- Total HUs -->
+    <div class="col-12 sm:col-6 lg:col-3">
+      <p-card styleClass="stat-card stat-card--total">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper stat-icon--total">
+            <i class="pi pi-list"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">{{ stats.total }}</span>
+            <span class="stat-label">Total HUs</span>
+          </div>
+        </div>
+      </p-card>
+    </div>
+
+    <!-- En Progreso -->
+    <div class="col-12 sm:col-6 lg:col-3">
+      <p-card styleClass="stat-card stat-card--progress">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper stat-icon--progress">
+            <i class="pi pi-spin pi-spinner"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value stat-value--blue">{{ stats.inProgress }}</span>
+            <span class="stat-label">En Progreso</span>
+          </div>
+        </div>
+      </p-card>
+    </div>
+
+    <!-- Completadas -->
+    <div class="col-12 sm:col-6 lg:col-3">
+      <p-card styleClass="stat-card stat-card--done">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper stat-icon--done">
+            <i class="pi pi-check-circle"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value stat-value--green">{{ stats.done }}</span>
+            <span class="stat-label">Completadas</span>
+          </div>
+        </div>
+      </p-card>
+    </div>
+
+    <!-- % Avance -->
+    <div class="col-12 sm:col-6 lg:col-3">
+      <p-card styleClass="stat-card stat-card--percentage">
+        <div class="stat-content">
+          <div class="stat-icon-wrapper stat-icon--percentage">
+            <i class="pi pi-chart-bar"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value stat-value--purple">{{ stats.percentage }}%</span>
+            <span class="stat-label">Avance General</span>
+          </div>
+        </div>
+        <div class="stat-progress">
+          <p-progressBar [value]="stats.percentage" [showValue]="false" styleClass="progress-bar--purple"></p-progressBar>
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>
