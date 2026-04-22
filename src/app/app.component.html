@@ -1,0 +1,73 @@
+<p-toast position="top-right"></p-toast>
+
+<div class="dashboard-container">
+  <!-- Header con título y botón refresh (C.A.9) -->
+  <app-header (onRefresh)="refreshData()"></app-header>
+
+  <!-- Estadísticas del sprint (C.A.6) -->
+  <app-sprint-stats [stats]="dashboardService.stats()"></app-sprint-stats>
+
+  <!-- Cards de miembros del squad (C.A.2, C.A.3) -->
+  <section class="section-block">
+    <h2 class="section-title">
+      <i class="pi pi-users mr-2"></i>
+      Miembros del Squad
+    </h2>
+    <div class="grid">
+      <div
+        *ngFor="let member of dashboardService.members()"
+        class="col-12 md:col-6 lg:col-3">
+        <app-member-card [member]="member"></app-member-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- HUs del sprint actual (C.A.1) -->
+  <section class="section-block">
+    <h2 class="section-title">
+      <i class="pi pi-list mr-2"></i>
+      HUs del Sprint Actual
+    </h2>
+    <div class="issues-table">
+      <div class="issues-table-header">
+        <span class="col-key">Key</span>
+        <span class="col-summary">Título</span>
+        <span class="col-status">Estado</span>
+        <span class="col-priority">Prioridad</span>
+        <span class="col-assignee">Asignado</span>
+      </div>
+      <div
+        *ngFor="let issue of dashboardService.issues()"
+        class="issues-table-row">
+        <span class="col-key issue-key">{{ issue.key }}</span>
+        <span class="col-summary issue-summary">{{ issue.summary }}</span>
+        <span class="col-status">
+          <span class="status-badge status-badge--{{ issue.status | lowercase | replace:' ':'-' }}">
+            {{ issue.status }}
+          </span>
+        </span>
+        <span class="col-priority">
+          <span class="priority-badge priority-badge--{{ issue.priority | lowercase }}">
+            {{ issue.priority }}
+          </span>
+        </span>
+        <span class="col-assignee">
+          {{ issue.assignee?.displayName ?? 'Sin asignar' }}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kanban Board (C.A.4) -->
+  <app-kanban-board [issues]="dashboardService.issues()"></app-kanban-board>
+
+  <!-- Break Timer + Workflow Tracker (C.A.5, C.A.10) -->
+  <div class="grid">
+    <div class="col-12 md:col-4">
+      <app-break-timer></app-break-timer>
+    </div>
+    <div class="col-12 md:col-8">
+      <app-workflow-tracker></app-workflow-tracker>
+    </div>
+  </div>
+</div>
