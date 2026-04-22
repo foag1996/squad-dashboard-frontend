@@ -1,0 +1,215 @@
+::ng-deep .workflow-card {
+  height: 100%;
+  border-radius: 10px;
+
+  .p-card-body {
+    padding: 0;
+  }
+
+  .p-card-content {
+    padding: 1rem;
+  }
+
+  .p-card-header {
+    padding: 0;
+  }
+}
+
+.workflow-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem 0.75rem;
+  border-bottom: 1px solid var(--corpo-border);
+}
+
+.workflow-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.workflow-icon {
+  font-size: 1.2rem;
+  color: var(--corpo-accent-purple);
+}
+
+.workflow-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--corpo-text-primary);
+}
+
+.workflow-subtitle {
+  font-size: 0.75rem;
+  color: var(--corpo-text-secondary);
+}
+
+.workflow-stepper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.workflow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  cursor: pointer;
+  min-width: 70px;
+
+  &:hover .step-circle {
+    transform: scale(1.1);
+  }
+}
+
+.step-connector {
+  position: absolute;
+  top: 16px;
+  height: 2px;
+  width: 50%;
+  z-index: 0;
+
+  &--left {
+    left: 0;
+    background: var(--corpo-border);
+  }
+
+  &--right {
+    right: 0;
+    background: var(--corpo-border);
+  }
+}
+
+.step--completed .step-connector--left,
+.step--completed .step-connector--right,
+.step--active .step-connector--left {
+  background: var(--corpo-accent-blue);
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s ease;
+  border: 2px solid var(--corpo-border);
+  background: var(--corpo-bg-primary);
+  color: var(--corpo-text-secondary);
+
+  .step--completed & {
+    background: var(--corpo-accent-blue);
+    border-color: var(--corpo-accent-blue);
+    color: white;
+  }
+
+  .step--active & {
+    background: var(--corpo-bg-secondary);
+    border-color: var(--corpo-accent-blue);
+    color: var(--corpo-accent-blue);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    animation: pulse-ring 2s infinite;
+  }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.step-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.4rem;
+  text-align: center;
+}
+
+.step-number {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--corpo-text-secondary);
+  text-transform: uppercase;
+
+  .step--active & {
+    color: var(--corpo-accent-blue);
+  }
+
+  .step--completed & {
+    color: var(--corpo-accent-blue);
+  }
+}
+
+.step-name {
+  font-size: 0.65rem;
+  color: var(--corpo-text-secondary);
+  white-space: nowrap;
+
+  .step--active & {
+    color: var(--corpo-text-primary);
+    font-weight: 600;
+  }
+}
+
+.workflow-active-detail {
+  background: rgba(59, 130, 246, 0.07);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.active-step-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.active-step-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(59, 130, 246, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--corpo-accent-blue);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.active-step-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.active-step-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--corpo-text-primary);
+}
+
+::ng-deep .active-tag {
+  font-size: 0.65rem;
+}
+
+.active-step-description {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--corpo-text-secondary);
+  line-height: 1.5;
+}

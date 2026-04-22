@@ -1,0 +1,57 @@
+<p-card styleClass="workflow-card">
+  <ng-template pTemplate="header">
+    <div class="workflow-header">
+      <div class="workflow-header-left">
+        <i class="pi pi-sitemap workflow-icon"></i>
+        <span class="workflow-title">Flujo de Trabajo del Squad</span>
+      </div>
+      <span class="workflow-subtitle">8 pasos obligatorios</span>
+    </div>
+  </ng-template>
+
+  <!-- Stepper horizontal -->
+  <div class="workflow-stepper">
+    <div
+      *ngFor="let step of steps; let i = index"
+      class="workflow-step"
+      [class.step--completed]="step.status === 'completed'"
+      [class.step--active]="step.status === 'active'"
+      [class.step--pending]="step.status === 'pending'"
+      [pTooltip]="step.description"
+      tooltipPosition="top"
+      (click)="setActiveStep(i)">
+
+      <!-- Conector izquierdo -->
+      <div class="step-connector step-connector--left" *ngIf="i > 0"></div>
+
+      <!-- Círculo del paso -->
+      <div class="step-circle">
+        <i class="pi {{ step.icon }}" *ngIf="step.status !== 'completed'"></i>
+        <i class="pi pi-check" *ngIf="step.status === 'completed'"></i>
+      </div>
+
+      <!-- Conector derecho -->
+      <div class="step-connector step-connector--right" *ngIf="i < steps.length - 1"></div>
+
+      <!-- Etiqueta -->
+      <div class="step-label">
+        <span class="step-number">{{ step.name }}</span>
+        <span class="step-name">{{ step.shortName }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detalle del paso activo -->
+  <div class="workflow-active-detail" *ngIf="steps[activeStep()] as activeStepData">
+    <div class="active-step-header">
+      <div class="active-step-icon">
+        <i class="pi {{ activeStepData.icon }}"></i>
+      </div>
+      <div class="active-step-info">
+        <span class="active-step-name">{{ activeStepData.name }}: {{ activeStepData.shortName }}</span>
+        <p-tag value="Activo" severity="info" styleClass="active-tag"></p-tag>
+      </div>
+    </div>
+    <p class="active-step-description">{{ activeStepData.description }}</p>
+  </div>
+</p-card>
