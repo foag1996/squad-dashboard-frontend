@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Issue } from '../models/issue.model';
 import { Member } from '../models/member.model';
 import { SprintStats } from '../models/sprint.model';
+import { environment } from '../../environments/environment';
 
 const MOCK_ISSUES: Issue[] = [
   { key: 'AC-101', summary: 'Implementar dashboard visual del squad', status: 'In Progress', priority: 'High', assignee: { displayName: 'Tech Lead', accountId: 'tl-001' } },
@@ -74,7 +75,7 @@ const MOCK_STATS: SprintStats = {
   providedIn: 'root'
 })
 export class DashboardService {
-  private readonly baseUrl = 'http://localhost:3000/api';
+  private readonly baseUrl = environment.apiUrl;
 
   // Signals para estado reactivo
   readonly issues = signal<Issue[]>(MOCK_ISSUES);
