@@ -1,0 +1,214 @@
+.kanban-wrapper {
+  background: var(--corpo-bg-secondary);
+  border: 1px solid var(--corpo-border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.kanban-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.kanban-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--corpo-text-primary);
+  display: flex;
+  align-items: center;
+}
+
+.kanban-total {
+  font-size: 0.8rem;
+  color: var(--corpo-text-secondary);
+}
+
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+  overflow-x: auto;
+  min-width: 0;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kanban-column {
+  background: var(--corpo-bg-primary);
+  border-radius: 8px;
+  border: 1px solid var(--corpo-border);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.kanban-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 2px solid transparent;
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.col-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.col-icon {
+  font-size: 0.85rem;
+}
+
+.col-title {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+}
+
+.col-count {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+// Colores por columna
+.col--backlog .kanban-col-header {
+  border-bottom-color: #64748b;
+  color: #94a3b8;
+}
+
+.col--todo .kanban-col-header {
+  border-bottom-color: #60a5fa;
+  color: #93c5fd;
+}
+
+.col--inprogress .kanban-col-header {
+  border-bottom-color: var(--corpo-accent-blue);
+  color: var(--corpo-accent-blue);
+}
+
+.col--inreview .kanban-col-header {
+  border-bottom-color: var(--corpo-accent-orange);
+  color: var(--corpo-accent-orange);
+}
+
+.col--done .kanban-col-header {
+  border-bottom-color: var(--corpo-accent-green);
+  color: var(--corpo-accent-green);
+}
+
+.kanban-col-body {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.kanban-issue-card {
+  background: var(--corpo-bg-secondary);
+  border: 1px solid var(--corpo-border);
+  border-radius: 6px;
+  padding: 0.6rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--corpo-accent-blue);
+  }
+}
+
+.issue-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.issue-card-key {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--corpo-accent-blue);
+}
+
+::ng-deep .priority-tag {
+  font-size: 0.62rem;
+  padding: 0.1rem 0.35rem;
+}
+
+.issue-card-summary {
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  color: var(--corpo-text-primary);
+  line-height: 1.35;
+}
+
+.issue-card-footer {
+  display: flex;
+  align-items: center;
+}
+
+.issue-assignee {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.assignee-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--corpo-accent-blue), var(--corpo-accent-purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: white;
+}
+
+.assignee-name {
+  font-size: 0.72rem;
+  color: var(--corpo-text-secondary);
+}
+
+.unassigned {
+  font-size: 0.7rem;
+  color: var(--corpo-text-secondary);
+  font-style: italic;
+}
+
+.kanban-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  color: var(--corpo-text-secondary);
+  opacity: 0.5;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+
+  i {
+    font-size: 1.5rem;
+  }
+}

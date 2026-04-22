@@ -1,0 +1,61 @@
+<div class="kanban-wrapper">
+  <div class="kanban-header">
+    <h2 class="kanban-title">
+      <i class="pi pi-table mr-2"></i>
+      Kanban Board
+    </h2>
+    <span class="kanban-total">{{ issues.length }} issues en total</span>
+  </div>
+
+  <div class="kanban-board">
+    <div
+      *ngFor="let col of columns"
+      class="kanban-column {{ col.colorClass }}">
+
+      <!-- Column Header -->
+      <div class="kanban-col-header">
+        <div class="col-header-left">
+          <i class="pi {{ col.icon }} col-icon"></i>
+          <span class="col-title">{{ col.label }}</span>
+        </div>
+        <span class="col-count">{{ getIssuesByStatus(col.id).length }}</span>
+      </div>
+
+      <!-- Issues -->
+      <div class="kanban-col-body">
+        <div
+          *ngFor="let issue of getIssuesByStatus(col.id)"
+          class="kanban-issue-card">
+
+          <div class="issue-card-header">
+            <span class="issue-card-key">{{ issue.key }}</span>
+            <p-tag
+              [value]="issue.priority"
+              [severity]="getPrioritySeverity(issue.priority)"
+              styleClass="priority-tag">
+            </p-tag>
+          </div>
+
+          <p class="issue-card-summary">{{ issue.summary }}</p>
+
+          <div class="issue-card-footer" *ngIf="issue.assignee">
+            <div class="issue-assignee">
+              <div class="assignee-avatar">{{ issue.assignee.displayName[0] }}</div>
+              <span class="assignee-name">{{ issue.assignee.displayName }}</span>
+            </div>
+          </div>
+
+          <div class="issue-card-footer" *ngIf="!issue.assignee">
+            <span class="unassigned">Sin asignar</span>
+          </div>
+        </div>
+
+        <!-- Empty state -->
+        <div *ngIf="getIssuesByStatus(col.id).length === 0" class="kanban-empty">
+          <i class="pi pi-inbox"></i>
+          <span>Sin issues</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
