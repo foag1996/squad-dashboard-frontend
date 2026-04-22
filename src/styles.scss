@@ -1,0 +1,79 @@
+// Tema oscuro PrimeNG
+@import "primeng/resources/themes/lara-dark-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
+
+// Variables corporativas
+:root {
+  --corpo-bg-primary: #0f172a;
+  --corpo-bg-secondary: #1e293b;
+  --corpo-bg-card: #1e293b;
+  --corpo-border: #334155;
+  --corpo-text-primary: #e2e8f0;
+  --corpo-text-secondary: #94a3b8;
+  --corpo-accent-blue: #3b82f6;
+  --corpo-accent-green: #22c55e;
+  --corpo-accent-orange: #f97316;
+  --corpo-accent-red: #ef4444;
+  --corpo-accent-purple: #a855f7;
+  --corpo-accent-yellow: #eab308;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--corpo-bg-primary);
+  color: var(--corpo-text-primary);
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  padding: 1.5rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+// Overrides globales PrimeNG para tema oscuro
+.p-card {
+  background: var(--corpo-bg-card);
+  border: 1px solid var(--corpo-border);
+  color: var(--corpo-text-primary);
+}
+
+.p-tag {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.p-progressbar {
+  height: 0.5rem;
+  background: var(--corpo-border);
+
+  .p-progressbar-value {
+    background: var(--corpo-accent-blue);
+  }
+}
+
+// Scrollbar personalizado
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--corpo-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--corpo-border);
+  border-radius: 3px;
+
+  &:hover {
+    background: var(--corpo-text-secondary);
+  }
+}
