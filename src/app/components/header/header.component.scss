@@ -1,0 +1,63 @@
+.header-wrapper {
+  margin-bottom: 1.5rem;
+
+  ::ng-deep .header-toolbar {
+    background: var(--corpo-bg-secondary);
+    border: 1px solid var(--corpo-border);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-icon {
+  font-size: 2rem;
+  color: var(--corpo-accent-blue);
+}
+
+.header-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--corpo-text-primary);
+  line-height: 1.2;
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  color: var(--corpo-text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.last-updated {
+  font-size: 0.8rem;
+  color: var(--corpo-text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.refresh-btn {
+  border-color: var(--corpo-accent-blue);
+  color: var(--corpo-accent-blue);
+
+  &:hover {
+    background: rgba(59, 130, 246, 0.1);
+  }
+}
