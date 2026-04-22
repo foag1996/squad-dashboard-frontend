@@ -42,12 +42,12 @@
         <span class="col-key issue-key">{{ issue.key }}</span>
         <span class="col-summary issue-summary">{{ issue.summary }}</span>
         <span class="col-status">
-          <span class="status-badge status-badge--{{ issue.status | lowercase | replace:' ':'-' }}">
+          <span class="status-badge" [ngClass]="getStatusClass(issue.status)">
             {{ issue.status }}
           </span>
         </span>
         <span class="col-priority">
-          <span class="priority-badge priority-badge--{{ issue.priority | lowercase }}">
+          <span class="priority-badge" [ngClass]="getPriorityClass(issue.priority)">
             {{ issue.priority }}
           </span>
         </span>

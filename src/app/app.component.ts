@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
@@ -11,13 +10,13 @@ import { MemberCardComponent } from './components/member-card/member-card.compon
 import { KanbanBoardComponent } from './components/kanban-board/kanban-board.component';
 import { BreakTimerComponent } from './components/break-timer/break-timer.component';
 import { WorkflowTrackerComponent } from './components/workflow-tracker/workflow-tracker.component';
+import { IssueStatus, IssuePriority } from './models/issue.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,
     ToastModule,
     HeaderComponent,
     SprintStatsComponent,
@@ -46,5 +45,27 @@ export class AppComponent implements OnInit {
       detail: 'Refrescando datos desde Jira...',
       life: 2000
     });
+  }
+
+  getStatusClass(status: IssueStatus): string {
+    const map: Record<IssueStatus, string> = {
+      'Backlog': 'status-badge--backlog',
+      'To Do': 'status-badge--todo',
+      'In Progress': 'status-badge--inprogress',
+      'In Review': 'status-badge--inreview',
+      'Done': 'status-badge--done'
+    };
+    return map[status];
+  }
+
+  getPriorityClass(priority: IssuePriority): string {
+    const map: Record<IssuePriority, string> = {
+      'Highest': 'priority-badge--highest',
+      'High': 'priority-badge--high',
+      'Medium': 'priority-badge--medium',
+      'Low': 'priority-badge--low',
+      'Lowest': 'priority-badge--lowest'
+    };
+    return map[priority];
   }
 }
